@@ -1262,14 +1262,15 @@ img {
   background: linear-gradient(135deg, var(--primary-red) 0%, #ff0000 100%);
   color: var(--text-primary);
   border: none;
-  padding: 12px 20px;
-  border-radius: 8px;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-family: var(--font-heading);
   font-size: 14px;
   font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
   box-shadow: 0 4px 15px rgba(193, 18, 31, 0.3);
 }
 

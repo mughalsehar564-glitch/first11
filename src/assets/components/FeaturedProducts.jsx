@@ -5,6 +5,7 @@ import { products } from '../data/products';
 const FeaturedProducts = ({ setIsOrderFormOpen, setSelectedProduct }) => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [productsVisible, setProductsVisible] = useState(true);
+  const [addedToCart, setAddedToCart] = useState({});
   const { addToCart } = useCart();
 
   const handleFilterChange = (filter) => {
@@ -21,6 +22,14 @@ const FeaturedProducts = ({ setIsOrderFormOpen, setSelectedProduct }) => {
       price: parseFloat(product.price.replace(',', ''))
     };
     addToCart(productToAdd);
+    
+    // Show "Added" feedback
+    setAddedToCart(prev => ({ ...prev, [product.id]: true }));
+    
+    // Reset after 2 seconds
+    setTimeout(() => {
+      setAddedToCart(prev => ({ ...prev, [product.id]: false }));
+    }, 2000);
   };
 
   const handleBuyNow = (productName) => {
@@ -124,7 +133,7 @@ const FeaturedProducts = ({ setIsOrderFormOpen, setSelectedProduct }) => {
                     className="btn-add-cart"
                     onClick={() => handleAddToCart(product)}
                   >
-                    🛒
+                    {addedToCart[product.id] ? 'Added' : 'Add to Cart'}
                   </button>
                 </div>
               </div>
